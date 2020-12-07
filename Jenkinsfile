@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/igstbagusdharmaputra/Docker-NodeJS-Part-3.git'
+        git 'https://github.com/igstbagusdharmaputra/Docker-NodeJS-Part-3'
       }
     }
     stage('Build') {
