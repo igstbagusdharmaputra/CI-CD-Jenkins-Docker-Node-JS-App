@@ -1,0 +1,23 @@
+version: "3"
+services:
+    nodeserver:
+        build:
+            context: .
+        ports:
+            - "3000:3000"
+        networks:
+            - app-network
+    nginx:
+        restart: always
+        image: nginx:alpine
+        ports:
+            - "80:80"
+        networks:
+            - app-network
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+        depends_on:
+            - nodeserver
+networks:
+  app-network:
+    driver: bridge
