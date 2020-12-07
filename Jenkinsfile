@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        sh 'git https://github.com/igstbagusdharmaputra/Docker-NodeJS-Part-3'
+	git credentialsId: 'git', url: 'https://github.com/igstbagusdharmaputra/Docker-NodeJS-Part-3'
       }
     }
     stage('Build') {
