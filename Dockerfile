@@ -1,7 +1,17 @@
-FROM node:alpine
-RUN mkdir app-nodejs
-ADD . /app-nodejs
-WORKDIR /app-nodejs
+FROM node
+
+RUN apt-get update && apt-get upgrade -y \
+    && apt-get clean
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY package*.json /app/
+
 RUN npm install
+
+COPY src /app/src
+
 EXPOSE 3000
-CMD ["node","server.js"]
+
+CMD [ "npm", "start" ]
