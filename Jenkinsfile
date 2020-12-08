@@ -4,17 +4,17 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-	git credentialsId: 'git', url: 'https://github.com/igstbagusdharmaputra/Docker-NodeJS-Part-3'
+	git credentialsId: 'github', url: 'https://github.com/igstbagusdharmaputra/Docker-NodeJS-Part-3'
       }
     }
     stage('Build') {
        steps {
-         sh 'npm install'
+         echo 'build'
        }
     }
     stage('Test') {
       steps {
-        sh 'npm test'
+        echo 'test'
       }
     }
   }
