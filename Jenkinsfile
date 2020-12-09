@@ -4,11 +4,8 @@ pipeline {
      dockerRegistryCredential = 'dockerhub'
      dockerImage = ''
   }
-  agent {
-     docker {
-        image 'node:10-alpine'
-     }
-  }
+  agent any
+  tools {nodejs "node" }
   stages {
     stage('Cloning Git') {
       steps {
