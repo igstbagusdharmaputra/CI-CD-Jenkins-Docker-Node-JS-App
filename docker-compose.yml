@@ -1,7 +1,7 @@
 version: "3"
 services:
     nodeserver:
-        image: dharmatkj/nodejs-app:7
+        image: dharmatkj/nodejs-app:latest
         ports:
             - "3000:3000"
         networks:

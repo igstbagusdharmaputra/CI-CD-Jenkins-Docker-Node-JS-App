@@ -25,7 +25,7 @@ pipeline {
     stage('Building image') {
        steps{
          script {
-           dockerImage = docker.build dockerRegistry + ":$BUILD_NUMBER"
+           dockerImage = docker.build dockerRegistry + ":latest"
          }
        }
      }
@@ -40,7 +40,7 @@ pipeline {
      }
      stage('Remove Unused docker image') {
        steps{
-         sh "docker rmi $dockerRegistry:$BUILD_NUMBER"
+         sh "docker rmi $dockerRegistry:latest"
        }
      }
   }
