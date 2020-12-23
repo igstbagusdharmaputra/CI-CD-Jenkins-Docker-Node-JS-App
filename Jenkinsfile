@@ -12,43 +12,41 @@ pipeline {
 	git credentialsId: 'github', url: 'https://github.com/igstbagusdharmaputra/Docker-NodeJS-Part-3'
       }
     }
-    stage('Build') {
-       steps {
-         sh 'npm install'
-       }
-    }
-    stage('Test') {
-      steps {
-        sh 'npm test'
-      }
-    }
-    stage('Building image') {
-       steps{
-         script {
-           dockerImage = docker.build dockerRegistry + ":latest"
-         }
-       }
-     }
-    stage('Upload Image') {
-       steps{
-         script {
-           docker.withRegistry( '', dockerRegistryCredential ) {
-             dockerImage.push()
-           }
-         }
-       }
-     }
-     stage('Remove Unused docker image') {
-       steps{
-         sh "docker rmi $dockerRegistry:latest"
-       }
-     }
+    // stage('Build') {
+    //    steps {
+    //      sh 'npm install'
+    //    }
+    // }
+    // stage('Test') {
+    //   steps {
+    //     sh 'npm test'
+    //   }
+    // }
+    // stage('Building image') {
+    //    steps{
+    //      script {
+    //        dockerImage = docker.build dockerRegistry + ":latest"
+    //      }
+    //    }
+    //  }
+    // stage('Upload Image') {
+    //    steps{
+    //      script {
+    //        docker.withRegistry( '', dockerRegistryCredential ) {
+    //          dockerImage.push()
+    //        }
+    //      }
+    //    }
+    //  }
+    //  stage('Remove Unused docker image') {
+    //    steps{
+    //      sh "docker rmi $dockerRegistry:latest"
+    //    }
+    //  }
      stage('Deploy App') {
         steps{
           sshagent(credentials: ['frontend']){
-             sh """ssh -tt login@host << EOF 
-                ssh -t -t devops@192.168.1.10 -o StrictHostKeyChecking=no
-                cd /home/devops/app-3 
+             sh """ ssh -t -t devops@192.168.1.10 -o StrictHostKeyChecking=no << EOF 
                 git pull origin master
                 exit
                 EOF"""
