@@ -46,9 +46,7 @@ pipeline {
      stage('Deploy App') {
         steps{
           sshagent(credentials: ['frontend']){
-             sh 'ssh -t -t devops@192.168.1.10 -o StrictHostKeyChecking=no 
-                "cd /home/devops/app-3 && git pull origin master && docker-compose down && docker rmi dharmatkj/nodejs-app:latest && docker-compose up -d"
-                '
+             sh 'ssh -t -t devops@192.168.1.10 -o StrictHostKeyChecking=no "cd /home/devops/app-3 && git pull origin master && docker-compose down && docker rmi dharmatkj/nodejs-app:latest && docker-compose up -d"'
           }
         }
      }
