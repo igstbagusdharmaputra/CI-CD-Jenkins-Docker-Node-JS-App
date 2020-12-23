@@ -46,11 +46,13 @@ pipeline {
      stage('Deploy App') {
         steps{
           sshagent(credentials: ['frontend']){
-            sh("""
-                 echo $SSH_AUTH_SOCK
-                 echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
-                 ssh devops@192.168.1.10 cd /home/devops/app-3 && docker-compose down
-             """)
+            // sh("""
+            //      echo $SSH_AUTH_SOCK
+            //      echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
+            //      ssh devops@192.168.1.10 cd /home/devops/app-3 && docker-compose down
+            //  """)
+             sh "echo pwd"
+             sh 'ssh -t -t devops@192.168.1.10 -o StrictHostKeyChecking=no "echo pwd && cd /home/devops/app-3 && echo pwd"'
           }
         }
      }
