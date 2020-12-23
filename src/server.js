@@ -6,7 +6,7 @@ const express = require('express');
  // App
  const app = express();
  app.get('/', (req, res) => {
-   res.send('Hallo World!\n');
+   res.send('Hallo WORLD\n');
  });
  app.listen(PORT, ()=> {
 	console.log(`Server running port ${PORT}`);
