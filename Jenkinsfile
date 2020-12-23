@@ -49,7 +49,7 @@ pipeline {
              sh 'git config user.email "dharmatkjone@gmail.com"'
              sh 'git config user.name "igstbagusdharmaputra"'
              sh """ ssh -t -t devops@192.168.1.10 -o StrictHostKeyChecking=no << EOF 
-                cd /home/devops/app-3
+                cd /home/devops/app-3/
                 docker rmi dharmatkj/nodejs-app:latest
                 exit
                 EOF"""
