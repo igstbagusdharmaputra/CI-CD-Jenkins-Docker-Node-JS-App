@@ -46,7 +46,7 @@ pipeline {
      stage('Deploy App') {
         steps{
            script {
-               sshagent(['frontend']){
+               sshagent(credentials: ['frontend']){
                  sh "ssh -vvv -o StrictHostKeyChecking=no -T devops@192.168.1.10 | cd /home/devops/app-3"  
                 }
            }
