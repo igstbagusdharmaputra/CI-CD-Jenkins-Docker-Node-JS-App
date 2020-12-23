@@ -50,6 +50,8 @@ pipeline {
                  echo $SSH_AUTH_SOCK
                  echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
                  ssh devops@192.168.1.10 whoami
+                 cd /home/devops/app-3
+                 docker-compose down
              """)
           }
         }
