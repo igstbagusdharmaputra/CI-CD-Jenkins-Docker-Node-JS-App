@@ -16,7 +16,7 @@ FROM gcr.io/distroless/nodejs
 
 COPY --from=stage2 /app/node_modules ./node_modules
 
-COPY src /app/src
+COPY . .
 
 EXPOSE 3000
 
