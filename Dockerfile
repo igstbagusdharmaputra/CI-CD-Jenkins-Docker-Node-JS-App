@@ -16,8 +16,8 @@ FROM gcr.io/distroless/nodejs
 
 COPY --from=stage2 /app/node_modules ./node_modules
 
-COPY . .
+COPY src /app/src 
 
 EXPOSE 3000
 
-CMD [ "npm","start" ]
+CMD [ "/app/src/server.js" ]
