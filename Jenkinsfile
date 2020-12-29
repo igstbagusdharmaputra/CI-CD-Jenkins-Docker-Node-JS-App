@@ -41,6 +41,7 @@ pipeline {
      stage('Remove Unused docker image') {
        steps{
          sh "docker rmi $dockerRegistry:latest"
+         sh "docker rmi -f $(docker images -f "dangling=true" -q"
        }
      }
      stage('Deploy App') {
@@ -48,7 +49,7 @@ pipeline {
           sshagent(credentials: ['frontend']){
             //  sh 'git config user.email "dharmatkjone@gmail.com"'
             //  sh 'git config user.name "igstbagusdharmaputra"'
-             sh """ ssh -t -t devops@192.168.1.10 -o StrictHostKeyChecking=no << EOF 
+             sh """ ssh -t -t devops@192.168.1.9 -o StrictHostKeyChecking=no << EOF 
                 cd /home/devops/app-3/
                 docker-compose down
                 git pull origin master
