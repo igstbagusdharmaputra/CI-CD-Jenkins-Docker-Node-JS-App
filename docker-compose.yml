@@ -2,6 +2,7 @@ version: "3"
 services:
     nodeserver:
         image: dharmatkj/nodejs-app:latest
+        tty: true
         ports:
             - "3000:3000"
         networks:
